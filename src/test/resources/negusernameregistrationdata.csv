@@ -1,0 +1,7 @@
+user,test@gmail.com,Nn12345$,Nn12345$
+invalid_username@123,test@gmail.com,Nn12345$,Nn12345$
+_user1,test@gmail.com,Nn12345$,Nn12345$
+user1_,test@gmail.com,Nn12345$,Nn12345$
+user&123%,test@gmail.com,Nn12345$,Nn12345$
+not_unique,test@gmail.com,Nn12345$,Nn12345$
+user 123,test@gmail.com,Nn12345$,Nn12345$

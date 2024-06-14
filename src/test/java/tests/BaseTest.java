@@ -21,7 +21,7 @@ public class BaseTest {
 
     static Logger logger = LoggerFactory.getLogger(BaseTest.class);
 
-    UserDTO user = new UserDTO().setEmail("user1@gmail.com").setPassword("Qwadr2024$");
+    UserDTO user = new UserDTO().setEmail("tt.test0880@gmail.com").setPassword("Qwadr2024$");
     @BeforeSuite
     public static void startBrowser() {
         logger.info("run browser settings ");

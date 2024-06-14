@@ -8,10 +8,10 @@ public class HomePageHelper extends BaseHelper{
         super(driver);
     }
 
-    By textTitle = By.cssSelector("");
+    By textTitle = By.xpath("//div[@class='css-1ww912h']");
 
     public void navigateToHomePage() {
-        driver.navigate().to("");
+        driver.navigate().to("http://localhost:5174/");
     }
 
     public String getTextTitleHomePage() {

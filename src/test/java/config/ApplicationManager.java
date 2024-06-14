@@ -6,11 +6,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 import java.time.Duration;
 
 public class ApplicationManager {
@@ -41,12 +38,8 @@ public class ApplicationManager {
             FirefoxOptions firefoxOptions = new FirefoxOptions();
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver(firefoxOptions);
-        } else if (browser.equals("edge")) {
-            EdgeOptions edgeOptions = new EdgeOptions();
-            WebDriverManager.edgedriver().setup();
-            driver = new EdgeDriver(edgeOptions);
         } else if (browser != null && browser != "chrome"
-                && browser != "firefox" && browser != "edge") {
+                && browser != "firefox") {
             throw new IllegalArgumentException("browser entered not correct");
         }
         driver.manage().window().maximize();

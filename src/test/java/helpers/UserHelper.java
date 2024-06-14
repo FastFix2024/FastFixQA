@@ -11,59 +11,79 @@ public class UserHelper extends BaseHelper{
     public UserHelper(WebDriver driver) {
         super(driver);
     }
-    By btnLoginNB = By.xpath("");
-    By btnSignUpForm = By.xpath("");
-    By btnSignUp = By.xpath("");
-    By btnLogin = By.xpath("");
-    By btnLogout = By.xpath("//div[contains(@class,'navbar-logged')]//button");
+    By btnLoginNB = By.xpath("//button[contains(@class,'css-1xrb8ai')and(text()='LOGIN')]");
+    By btnRegisterForm = By.xpath("//button[contains(@class,'css-h94xtx')]");
+    By btnLoginForm = By.xpath("//button[contains(@class,'css-117zi8f')]");
+    By btnSubmitReg = By.xpath("//button[contains(@class,'css-dqj9az')and(text()='SUBMIT')]");
+    By checkbox = By.xpath("//input[@id='agreement-id']");
+    By btnSubmitLogin = By.xpath("//button[contains(@class,'css-1xrb8ai')and(text()='SUBMIT')]");
+    By btnLogout = By.xpath("");
+    By btnDeleteAccount = By.xpath("");
+    By btnConfirmDeleteAccount = By.xpath("");
 
-    public void signUp(UserDTO userDTO) {
+    public void register(UserDTO userDTO) {
         clickLoginOnNavBar();
         pause(5000);
-        clickSignUp();
-        fillUsernameToSignUp(userDTO.getUsername());
-        fillEmailToSignup(userDTO.getEmail());
-        fillPasswordToSignUp(userDTO.getPassword());
-        confirmPasswordToSignUp(userDTO.getPassword());
-        clickOnSignUpBtn();
+        clickRegister();
+        fillUsernameToRegister(userDTO.getUsername());
+        fillEmailToRegister(userDTO.getEmail());
+        fillPasswordToRegister(userDTO.getPassword());
+        confirmPasswordToRegister(userDTO.getConfirmPassword());
+        clickCheckbox();
+        clickSubmitRegisterBtn();
     }
     public void clickLoginOnNavBar() {
         clickBase(btnLoginNB);
     }
-    public void clickSignUp() {
-        clickBase(btnSignUpForm);
+    public void clickRegister() {
+        clickBase(btnRegisterForm);
     }
-    public void fillUsernameToSignUp(String username) {
+    public void fillUsernameToRegister(String username) {
         WebElement fillUsername = driver.findElement(By
-                .xpath(""));
+                .xpath("//input[contains(@name,'username')]"));
         fillUsername.click();
         fillUsername.clear();
+        fillUsername.sendKeys(username);
     }
-    public void fillEmailToSignup(String email) {
+    public void fillEmailToRegister(String email) {
         WebElement fillEmail = driver.findElement(By
-                .xpath(""));
+                .xpath("//input[contains(@name,'email')]"));
         fillEmail.click();
         fillEmail.clear();
+        fillEmail.sendKeys(email);
     }
-    public void fillPasswordToSignUp(String password) {
+    public void fillPasswordToRegister(String password) {
         WebElement fillPassword = driver.findElement(By
-                .xpath(""));
+                .xpath("//input[@name='password']"));
         fillPassword.click();
         fillPassword.clear();
+        fillPassword.sendKeys(password);
     }
-    public void confirmPasswordToSignUp(String password) {
+    public void confirmPasswordToRegister(String password) {
         WebElement confirmPassword = driver.findElement(By
-                .xpath(""));
+                .xpath("//input[@name='passwordRetype']"));
         confirmPassword.click();
         confirmPassword.clear();
+        confirmPassword.sendKeys(password);
     }
-    public void clickOnSignUpBtn() {
-        clickBase(btnSignUp);
+    public void clickCheckbox() {clickBase(checkbox);}
+    public void clickSubmitRegisterBtn() {
+        clickBase(btnSubmitReg);
     }
     public void login(UserDTO user) {
         fillEmailOnLogin(user.getEmail());
         fillPasswordOnLogin(user.getPassword());
-        clickLoginBtn();
+        clickSubmitLoginBtn();
+    }
+    public void verifyRegistration(UserDTO userDTO) {
+        Assert.assertEquals(
+                ApplicationManager.getDriver().findElement(
+                                By.xpath(""))
+                        .getText().trim(),
+                userDTO.getEmail().trim());
+    }
+    public void clickOnLoginForm() {
+        clickBase(btnLoginForm);
     }
     public void fillEmailOnLogin(String email) {
         WebElement inputEmail = driver.findElement(By
@@ -79,18 +99,25 @@ public class UserHelper extends BaseHelper{
         inputPassword.clear();
         inputPassword.sendKeys(password);
     }
-    public void clickLoginBtn() {
-       clickBase(btnLogin);
+    public void clickSubmitLoginBtn() {
+       clickBase(btnSubmitLogin);
     }
-    public void checkIfNewUserWasRegistered(UserDTO userDTO) {
-        Assert.assertEquals(
-                ApplicationManager.getDriver().findElement(
-                                By.xpath("//a[@href='/customer/info']"))
-                        .getText().trim(),
-                userDTO.getEmail().trim());
-    }
+
     public void clickLogoutBtn() {
         clickBase(btnLogout);
+    }
+
+    public void deleteAccount(){
+        clickDeleteAccountBtn();
+        clickToConfirmDeleteAccountBtn();
+    }
+
+    public void clickToConfirmDeleteAccountBtn() {
+        clickBase(btnConfirmDeleteAccount);
+    }
+
+    public void clickDeleteAccountBtn(){
+        clickBase(btnDeleteAccount);
     }
 
 }

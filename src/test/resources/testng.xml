@@ -4,9 +4,8 @@
     <test name="Smoke">
         <classes>
             <class name="tests.LoginTest"/>
-            <class name="tests.SignUpTest"/>
-            <class name="tests.HomePageTests"/>
-            <class name="tests.UserAreaTests"/>
+            <class name="tests.RegistrationTest"/>
+            <class name="tests.DeleteAccountTest"/>
         </classes>
     </test>
 
