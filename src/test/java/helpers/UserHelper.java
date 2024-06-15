@@ -3,6 +3,7 @@ package helpers;
 import config.ApplicationManager;
 import dto.UserDTO;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -56,17 +57,29 @@ public class UserHelper extends BaseHelper{
     public void clickSubmitRegisterBtn() {
         clickBase(btnSubmitReg);
     }
-    public void login(UserDTO user) {
-        fillEmailOnLogin(user.getEmail());
-        fillPasswordOnLogin(user.getPassword());
-        clickSubmitLoginBtn();
-    }
     public void verifyRegistration(UserDTO userDTO) {
         Assert.assertEquals(
                 ApplicationManager.getDriver().findElement(
                                 By.xpath(""))
                         .getText().trim(),
                 userDTO.getEmail().trim());
+    }
+    public boolean isUsernameDisplayed(String expectedUsername) {
+        try {
+            WebElement usernameElement = ApplicationManager.getDriver().findElement(By.xpath("//span[@class='username']"));
+            String actualUsername = usernameElement.getText().trim();
+            return actualUsername.equals(expectedUsername.trim());
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+    public void login(UserDTO user) {
+        fillEmailOnLogin(user.getEmail());
+        fillPasswordOnLogin(user.getPassword());
+        clickSubmitLoginBtn();
+        pause(5000);
+        boolean isLoginSuccessful = isUsernameDisplayed(user.getUsername());
+        Assert.assertTrue(isLoginSuccessful, "Login was not successful!");
     }
     public void clickOnLoginForm() {
         clickBase(btnLoginForm);
