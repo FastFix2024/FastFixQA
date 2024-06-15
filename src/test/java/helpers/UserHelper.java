@@ -39,32 +39,18 @@ public class UserHelper extends BaseHelper{
         clickBase(btnRegisterForm);
     }
     public void fillUsernameToRegister(String username) {
-        WebElement fillUsername = driver.findElement(By
+        typeText(username,By
                 .xpath("//input[contains(@name,'username')]"));
-        fillUsername.click();
-        fillUsername.clear();
-        fillUsername.sendKeys(username);
     }
     public void fillEmailToRegister(String email) {
-        WebElement fillEmail = driver.findElement(By
-                .xpath("//input[contains(@name,'email')]"));
-        fillEmail.click();
-        fillEmail.clear();
-        fillEmail.sendKeys(email);
+        typeText(email,By.xpath("//input[contains(@name,'email')]"));
     }
     public void fillPasswordToRegister(String password) {
-        WebElement fillPassword = driver.findElement(By
-                .xpath("//input[@name='password']"));
-        fillPassword.click();
-        fillPassword.clear();
-        fillPassword.sendKeys(password);
+        typeText(password,By.xpath("//input[@name='password']"));
     }
     public void confirmPasswordToRegister(String password) {
-        WebElement confirmPassword = driver.findElement(By
+        typeText(password,By
                 .xpath("//input[@name='passwordRetype']"));
-        confirmPassword.click();
-        confirmPassword.clear();
-        confirmPassword.sendKeys(password);
     }
     public void clickCheckbox() {clickBase(checkbox);}
     public void clickSubmitRegisterBtn() {
@@ -86,18 +72,12 @@ public class UserHelper extends BaseHelper{
         clickBase(btnLoginForm);
     }
     public void fillEmailOnLogin(String email) {
-        WebElement inputEmail = driver.findElement(By
+        typeText(email,By
                 .xpath("//input[@name='email']"));
-        inputEmail.click();
-        inputEmail.clear();
-        inputEmail.sendKeys(email);
     }
     public void fillPasswordOnLogin(String password) {
-        WebElement inputPassword = driver.findElement(By
+        typeText(password,By
                 .xpath("//input[@name='password']"));
-        inputPassword.click();
-        inputPassword.clear();
-        inputPassword.sendKeys(password);
     }
     public void clickSubmitLoginBtn() {
        clickBase(btnSubmitLogin);
