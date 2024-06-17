@@ -20,14 +20,14 @@ public class DeleteAccountTest extends BaseTest {
         app.getHomePageHelper().navigateToHomePage();
     }
     @Test
-    public void positiveAccountDeletionTest(UserDTO userDTO) {
+    public void positiveAccountDeletionTest() {
         app.getUserHelper().clickDeleteAccountBtn();
         app.getUserHelper().clickToConfirmDeleteAccountBtn();
 
         Assert.assertTrue(app.getUserHelper().isAccountDeleted(), "Account was not deleted successfully");
     }
     @Test
-    public void negativeAccountDeletionTest(UserDTO userDTO) {
+    public void negativeAccountDeletionTest() {
         app.getUserHelper().clickDeleteAccountBtn();
         app.getUserHelper().clickToConfirmDeleteAccountBtn();
 
