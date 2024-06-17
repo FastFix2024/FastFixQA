@@ -22,16 +22,10 @@ public class BaseHelper {
     protected void clickBase(By by) {
         findElementBase(by).click();
     }
-    protected void clickBaseByElement(WebElement element) {
-        element.click();
-    }
     protected String getTextBaseByLocator(By by) {
         String text = findElementBase(by).getText().trim();
         logger.info("get text from element: " + text);
         return text;
-    }
-    protected String getTextBaseByElement(WebElement el) {
-        return el.getText().trim();
     }
     protected void typeText(String text, By by) {
         WebElement element = findElementBase(by);
@@ -43,7 +37,6 @@ public class BaseHelper {
         Alert alert = driver.switchTo().alert();
         return alert.getText().trim();
     }
-
     public void clickOkAlert() {
         Alert alert = driver.switchTo().alert();
         alert.accept();

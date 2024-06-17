@@ -17,4 +17,5 @@ public class HomePageHelper extends BaseHelper{
     public String getTextTitleHomePage() {
         return getTextBaseByLocator(textTitle);
     }
+
 }

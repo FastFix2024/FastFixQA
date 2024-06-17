@@ -12,6 +12,7 @@ public class UserHelper extends BaseHelper{
     public UserHelper(WebDriver driver) {
         super(driver);
     }
+
     By btnLoginNB = By.xpath("//button[contains(@class,'css-1xrb8ai')and(text()='LOGIN')]");
     By btnRegisterForm = By.xpath("//button[contains(@class,'css-h94xtx')]");
     By btnLoginForm = By.xpath("//button[contains(@class,'css-117zi8f')]");
@@ -21,22 +22,18 @@ public class UserHelper extends BaseHelper{
     By btnLogout = By.xpath("");
     By btnDeleteAccount = By.xpath("");
     By btnConfirmDeleteAccount = By.xpath("");
+    By deleteSuccessMessage = By.xpath("");
 
-    public void register(UserDTO userDTO) {
-        clickLoginOnNavBar();
-        pause(5000);
-        clickRegister();
+    public void fillRegistrationForm(UserDTO userDTO) {
         fillUsernameToRegister(userDTO.getUsername());
         fillEmailToRegister(userDTO.getEmail());
         fillPasswordToRegister(userDTO.getPassword());
         confirmPasswordToRegister(userDTO.getConfirmPassword());
-        clickCheckbox();
-        clickSubmitRegisterBtn();
     }
     public void clickLoginOnNavBar() {
         clickBase(btnLoginNB);
     }
-    public void clickRegister() {
+    public void clickRegisterForm() {
         clickBase(btnRegisterForm);
     }
     public void fillUsernameToRegister(String username) {
@@ -64,22 +61,12 @@ public class UserHelper extends BaseHelper{
                         .getText().trim(),
                 userDTO.getEmail().trim());
     }
-    public boolean isUsernameDisplayed(String expectedUsername) {
-        try {
-            WebElement usernameElement = ApplicationManager.getDriver().findElement(By.xpath("//span[@class='username']"));
-            String actualUsername = usernameElement.getText().trim();
-            return actualUsername.equals(expectedUsername.trim());
-        } catch (NoSuchElementException e) {
-            return false;
-        }
+    public String getLogoutBtnText() {
+        return getTextBaseByLocator(btnLogout);
     }
-    public void login(UserDTO user) {
+    public void fillLoginForm(UserDTO user) {
         fillEmailOnLogin(user.getEmail());
         fillPasswordOnLogin(user.getPassword());
-        clickSubmitLoginBtn();
-        pause(5000);
-        boolean isLoginSuccessful = isUsernameDisplayed(user.getUsername());
-        Assert.assertTrue(isLoginSuccessful, "Login was not successful!");
     }
     public void clickOnLoginForm() {
         clickBase(btnLoginForm);
@@ -95,14 +82,17 @@ public class UserHelper extends BaseHelper{
     public void clickSubmitLoginBtn() {
        clickBase(btnSubmitLogin);
     }
+    public boolean isUserLoggedIn() {
+        // Логика для проверки, залогинен ли пользователь
+        try {
+            return driver.findElement(btnLogout).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
 
     public void clickLogoutBtn() {
         clickBase(btnLogout);
-    }
-
-    public void deleteAccount(){
-        clickDeleteAccountBtn();
-        clickToConfirmDeleteAccountBtn();
     }
 
     public void clickToConfirmDeleteAccountBtn() {
@@ -113,4 +103,12 @@ public class UserHelper extends BaseHelper{
         clickBase(btnDeleteAccount);
     }
 
+    public boolean isAccountDeleted() {
+        String expectedMessage = "Account deleted successfully";
+        String actualMessage = getDeleteSuccessMessage();
+        return expectedMessage.equals(actualMessage);
+    }
+    public String getDeleteSuccessMessage() {
+        return getTextBaseByLocator(deleteSuccessMessage);
+    }
 }

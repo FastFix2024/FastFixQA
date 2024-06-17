@@ -8,23 +8,21 @@ import org.testng.annotations.BeforeSuite;
 import static io.restassured.RestAssured.given;
 
 public class BaseTestAPI {
-    public static final String ENDPOINT_REGISTRATION = "/registration";
-    public static final String ENDPOINT_LOGIN = "/user/login/usernamepassword";
-    public static final String ENDPOINT_LOGOUT = "/user/logout/usernamepassword";
-    public static final String ENDPOINT_DELETE = "/user/delete/usernamepassword";
+    public static final String ENDPOINT_LOGIN = "/auth/login";
+    public static final String ENDPOINT_LOGOUT = "/auth/logout";
+    public static final String ENDPOINT_DELETE = "/users/my/profile";
 
 
     UserDTOLombok userAPI = UserDTOLombok.builder()
-            .username("tt.test0880@gmail.com")
+            .username("katekate")
             .password("Qwadr2024$")
             .build();
-    public static final String TOKEN1 = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJrYXRla2F0ZSIsImV4cCI6MTcxODI3NTIyNiwicm9sZXMiOltdLCJuYW1lIjoia2F0ZWthdGUifQ.akIyWNAUCIMngl3yeRdJ3wNI7bpLCTwHFmRRuisKszo";
+    public static final String TOKEN1 = "";
     public String token = "";
     public static final String AUTH = "Authorization";
     @BeforeSuite
     public void initAPI() {
         RestAssured.baseURI = "https://fastfix-app-jcage.ondigitalocean.app";
-        RestAssured.basePath = "/api";
         token = requestLoginApi(userAPI).then().extract().path("token");
     }
     public Response requestLoginApi(UserDTOLombok user) {
