@@ -32,6 +32,6 @@ public class DeleteAccountTest extends BaseTest {
         app.getUserHelper().clickToConfirmDeleteAccountBtn();
 
         String alertText = app.getUserHelper().getTextAlert();
-        Assert.assertEquals(alertText, "You do not have the necessary permissions to delete the account", "Unexpected alert text");
+        Assert.assertEquals(alertText,  "Unexpected alert text");
     }
 }
