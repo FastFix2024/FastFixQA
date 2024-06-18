@@ -31,4 +31,18 @@ public class BaseTestAPI {
                 .when()
                 .post(ENDPOINT_LOGIN);
     }
+
+    public Response requestLogoutApi() {
+        return given()
+                .header("Authorization", token)
+                .when()
+                .post(ENDPOINT_LOGOUT);
+    }
+
+    public Response requestDeleteAccountApi() {
+        return given()
+                .header("Authorization", token)
+                .when()
+                .delete(ENDPOINT_DELETE);
+    }
 }

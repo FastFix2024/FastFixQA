@@ -21,5 +21,4 @@ public class LogoutApiTests extends BaseTestAPI{
                 .then()
                 .assertThat().statusCode(200);
     }
-
 }
