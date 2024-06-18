@@ -14,7 +14,7 @@ public class BaseTestAPI {
 
 
     UserDTOLombok userAPI = UserDTOLombok.builder()
-            .username("katekate")
+            .email("tt.test0880@gmail.com")
             .password("Qwadr2024$")
             .build();
     public static final String TOKEN1 = "";
