@@ -11,7 +11,7 @@ public class HomePageHelper extends BaseHelper{
     By textTitle = By.xpath("//div[@class='css-1ww912h']");
 
     public void navigateToHomePage() {
-        driver.navigate().to("http://localhost:5174/");
+        driver.navigate().to("https://fastfix-app-jcage.ondigitalocean.app");
     }
 
     public String getTextTitleHomePage() {

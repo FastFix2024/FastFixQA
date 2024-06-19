@@ -3,9 +3,9 @@
 <suite name="Smoke" verbose="1">
     <test name="Smoke">
         <classes>
-            <class name="tests.LoginTest"/>
-            <class name="tests.RegistrationTest"/>
-            <class name="tests.DeleteAccountTest"/>
+            <class name="tests.LoginTests"/>
+            <class name="tests.RegistrationTests"/>
+            <class name="tests.DeleteAccountTests"/>
         </classes>
     </test>
 
