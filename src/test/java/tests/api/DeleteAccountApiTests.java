@@ -6,12 +6,6 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class DeleteAccountApiTests extends BaseTestAPI{
 
-    @BeforeMethod
-    public void precondition() {
-        if (token.isEmpty()) {
-            token = requestLoginApi(userAPI).then().extract().path("token");
-        }
-    }
     @Test(description = "assert status code 200 for positive delete account")
     public void positiveDeleteAccountTestStatusCode() {
         given()
