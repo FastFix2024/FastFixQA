@@ -6,14 +6,19 @@ A test automation framework for a web application FastFix. Using Java, Rest Assu
 Prerequisites:
 
 Java 11 or higher
+
 Gradle
+
 ChromeDriver (for Selenium WebDriver)
 
 Directory Structure:
 
 The repository is organized into the following directories:
+
 src/test: Contains the test classes and resources.
+
 java: Java test classes organized by feature or endpoint.
+
 resources: Test data and configuration files.
 
 Test Classes:
